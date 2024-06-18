@@ -1,0 +1,28 @@
+<h1>Transactions List</h1>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let transaction"> {{transaction.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let transaction"> {{transaction.date | date: 'shortDate'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Comments">
+        <th mat-header-cell *matHeaderCellDef> Comments </th>
+        <td mat-cell *matCellDef="let transaction"> {{transaction.Comments}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let transaction"> 
+            <button mat-raised-button (click)="showDetails(transaction.id, transaction.date, transaction.Comments)"> View </button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let transaction; columns: displayedColumns;"></tr>
+</table>
